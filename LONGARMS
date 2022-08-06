@@ -4,13 +4,17 @@ if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubuser
     local hook = nil
     local enabled = false
     
-    plr.Character["Left Arm"]:AddPropertyEmulator("Size") -- fake size
-    plr.Character["Right Arm"]:AddPropertyEmulator("Size") -- fake size
+    LPH_JIT_ULTRA(function()
+    plr.Character["Left Arm"]:AddPropertyEmulator("Size")
+    plr.Character["Right Arm"]:AddPropertyEmulator("Size")
+end)()
     
     game:GetService("UserInputService").InputBegan:Connect(function(key, gpe)
         if not enabled and not gpe and key.KeyCode == Enum.KeyCode.J and getgenv().Longarms then
-            plr.Character["Left Arm"]:AddPropertyEmulator("Size") -- fake size
-            plr.Character["Right Arm"]:AddPropertyEmulator("Size") -- fake size
+            LPH_JIT_ULTRA(function()
+    plr.Character["Left Arm"]:AddPropertyEmulator("Size")
+    plr.Character["Right Arm"]:AddPropertyEmulator("Size")
+end)()
             
             for i,v in pairs(getconnections(plr.Character["Left Arm"]:GetPropertyChangedSignal("Size"))) do
                 v.Function = error
